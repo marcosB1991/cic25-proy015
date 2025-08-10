@@ -22,6 +22,10 @@ public class Plaza {
     @Column (name = "ocupada")
     private boolean ocupada;
 
+    @Column (name= "descripcion")
+    private String descripcion;
+
+   
     @OneToMany(mappedBy = "plaza")
     private List <Vehiculo> vehiculos = new ArrayList<>();
 
@@ -48,6 +52,15 @@ public class Plaza {
     public void setVehiculos(List<Vehiculo> vehiculos) {
         this.vehiculos = vehiculos;
     }
+
+     public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
 
     @Override
     public int hashCode() {
@@ -76,9 +89,11 @@ public class Plaza {
 
     @Override
     public String toString() {
-        return "Plaza [id=" + id + ", ocupada=" + ocupada + ", vehiculos=" + vehiculos + "]";
+        return "Plaza [id=" + id + ", ocupada=" + ocupada + ", descripcion=" + descripcion + ", vehiculos=" + vehiculos
+                + "]";
     }
 
+    
     
 
 }
