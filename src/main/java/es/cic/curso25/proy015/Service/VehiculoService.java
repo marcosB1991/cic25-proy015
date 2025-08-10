@@ -43,12 +43,12 @@ public class VehiculoService {
     @Transactional(readOnly = true)
     public Vehiculo obtenerVehiculo(Long id) {
         return vehiculoRepository.findById(id)
-                .orElseThrow(() -> new VehiculoNotFoundException("Vehículo no encontrado"));
+                .orElseThrow(VehiculoNoEncontradoException::new);
     }
 
     public Vehiculo updateVehiculo(Vehiculo vehiculo) {
         if (!vehiculoRepository.existsById(vehiculo.getId())) {
-            throw new VehiculoNotFoundException("Vehículo no encontrado");
+            throw new VehiculoNoEncontradoException();
         }
         return vehiculoRepository.save(vehiculo);
     }
