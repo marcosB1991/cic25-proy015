@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.PastOrPresent;
 
@@ -27,6 +29,22 @@ public class Multa {
 
     @Column(name = "fecha_salida")
     private LocalDate fechaSalida;
+
+   
+    @Column(name="importe")
+    private Long importe;
+
+    @ManyToOne
+    @JoinColumn(name= "vehiculo_id")
+    private Vehiculo vehiculo;
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
 
     public Long getId() {
         return id;
@@ -50,6 +68,14 @@ public class Multa {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+     public Long getImporte() {
+        return importe;
+    }
+
+    public void setImporte(Long importe) {
+        this.importe = importe;
     }
 
     @Override
@@ -79,8 +105,11 @@ public class Multa {
 
     @Override
     public String toString() {
-        return "Multa [id=" + id + ", fechaEntrada=" + fechaEntrada + ", fechaSalida=" + fechaSalida + "]";
+        return "Multa [id=" + id + ", fechaEntrada=" + fechaEntrada + ", fechaSalida=" + fechaSalida + ", importe="
+                + importe + ", vehiculo=" + vehiculo + "]";
     }
+
+    
 
     
 
